@@ -639,9 +639,6 @@
         <p class="stop-desc">Take an Uber from Home, San Jose at 8:00 AM. Allow about 50 minutes to reach SFO around 8:50 AM, more than two hours before the international flight.</p>
       </div>
     </div>
-    <div class="travel-pill-wrap">
-      <div class="travel-pill-line"></div><span class="travel-pill">🚗 Uber · ~50 min</span><div class="travel-pill-line"></div>
-    </div>
 
     <div class="stop">
       <div class="stop-time">11:00 AM</div>
@@ -922,9 +919,6 @@
         <p class="stop-desc">Tabasco 149, Roma Norte. Your buddy locked this down - confirmed res at 6 PM. Uber back from Polanco, ~20 min.</p>
       </div>
     </div>
-    <div class="travel-pill-wrap">
-      <div class="travel-pill-line"></div><span class="travel-pill">🚗 Uber · ~20 min to Polanco</span><div class="travel-pill-line"></div>
-    </div>
 
     <div class="stop">
       <div class="stop-time">~8:00 PM</div>
@@ -936,9 +930,6 @@
         </div>
         <p class="stop-desc">Third-floor cigar lounge in Polanco. Grab a smoke and a drink between Bar Mauro and Parole.</p>
       </div>
-    </div>
-    <div class="travel-pill-wrap">
-      <div class="travel-pill-line"></div><span class="travel-pill">🚶 Walk · ~5 min</span><div class="travel-pill-line"></div>
     </div>
 
     <div class="stop">
@@ -1009,9 +1000,6 @@
         <p class="stop-desc">One of the greatest museums in the world. The Aztec Sun Stone, Maya exhibits, the massive courtyard fountain - give it at least 2–3 hours. Inside Chapultepec Park.</p>
       </div>
     </div>
-    <div class="travel-pill-wrap">
-      <div class="travel-pill-line"></div><span class="travel-pill">🚶 Walk · ~10 min to Chapultepec entrance</span><div class="travel-pill-line"></div>
-    </div>
 
     <div class="stop">
       <div class="stop-time">~4:30 PM</div>
@@ -1024,13 +1012,7 @@
         <p class="stop-desc">Hidden underground vegan taco stand right at the entrance to Chapultepec. Dirt-cheap, insanely good, 4.6 stars. Try the campechano and tinga de setas. Quick refuel after the museum, then Uber to the Airbnb to change for Pujol.</p>
       </div>
     </div>
-    <div class="travel-pill-wrap">
-      <div class="travel-pill-line"></div><span class="travel-pill">🚗 Uber · ~10 min to Airbnb + change for Pujol</span><div class="travel-pill-line"></div>
-    </div>
 
-    <div class="travel-pill-wrap">
-      <div class="travel-pill-line"></div><span class="travel-pill">🚗 Uber · ~20 min to Polanco</span><div class="travel-pill-line"></div>
-    </div>
 
     <div class="stop">
       <div class="stop-time">7:30 PM</div>
@@ -1157,11 +1139,11 @@
 <script>
 (function(){
   var td={
-    1:["🚗 35 min","🚶 10 min","🚗 15 min","🚗 12 min","🚶 5 min","🚶 5 min"],
-    2:["🚶 5 min","🚗 45 min","🚗 45 min","🚶 5 min","🚶 8 min","🚗 15 min","🚶 5 min","🚶 10 min","🚗 15 min"],
-    3:["🚗 20 min","🚗 Uber · 20 min","🚗 20 min","🚗 20 min"],
-    4:["🚗 18 min","🚗 15 min","🚶 10 min","🚗 20 min","🚶 10 min"],
-    5:["🚶 5 min","🚗 35 min","🚗 Uber · ~45 min"]
+    1:["🚗 Uber · ~50 min","","🚗 ~35 min","🚶 ~10 min","🚗 ~15 min","🚗 ~12 min","🚶 ~5 min","🚶 ~5 min"],
+    2:["🚗 ~45 min","🚗 ~45 min","🚶 ~5 min","🚶 ~8 min","🚗 ~15 min","🚶 ~5 min","🚶 ~10 min","🚗 ~15 min"],
+    3:["🚗 ~15 min","🚗 ~20 min","🚗 Uber · ~20 min to Polanco","🚶 Walk · ~5 min","🚗 ~20 min"],
+    4:["🚗 ~18 min","🚶 Walk · ~10 min","🚗 Uber · ~10 min Airbnb + change, ~20 min to Pujol","🚗 ~20 min","🚶 ~10 min"],
+    5:["🚶 ~5 min","","🚗 Uber · ~45 min",""]
   };
   document.querySelectorAll('.day-section').forEach(function(sec,idx){
     var day=idx+1,data=td[day];
@@ -1174,6 +1156,7 @@
     var use=data.length>gaps?data.slice(data.length-gaps):data;
     var si=gaps-use.length;
     for(var i=0;i<use.length;i++){
+      if(!use[i]){continue;}
       var el=document.createElement('div');
       el.className='travel-pill-wrap';
       el.innerHTML='<div class="travel-pill-line"></div><span class="travel-pill">'+use[i]+'</span><div class="travel-pill-line"></div>';
