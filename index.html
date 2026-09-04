@@ -1461,7 +1461,7 @@
         }
         if(dup) continue;
         found=true;
-        html+='<div class="search-result">'
+        html+='<div class="search-result" data-vault="'+vault[i].n+'">'
           +'<div class="search-result-icon vault">🗂</div>'
           +'<div class="search-result-info">'
           +'<p class="search-result-name">'+vault[i].n+'</p>'
@@ -1481,21 +1481,28 @@
 
   // Click on itinerary result scrolls to it
   results.addEventListener('click',function(e){
-    var row=e.target.closest('.search-result[data-stop]');
-    if(!row)return;
-    var stopName=row.getAttribute('data-stop');
-    var titles=document.querySelectorAll('.stop-title');
-    for(var i=0;i<titles.length;i++){
-      if(titles[i].textContent===stopName){
-        closeSearch();
-        setTimeout(function(){
-          titles[i].closest('.stop').scrollIntoView({behavior:'smooth',block:'center'});
-          titles[i].closest('.stop').style.transition='background 0.3s';
-          titles[i].closest('.stop').style.background='#FEF0EC';
-          setTimeout(function(){titles[i].closest('.stop').style.background='';},2000);
-        },350);
-        break;
+    var itinRow=e.target.closest('.search-result[data-stop]');
+    if(itinRow){
+      var stopName=itinRow.getAttribute('data-stop');
+      var titles=document.querySelectorAll('.stop-title');
+      for(var i=0;i<titles.length;i++){
+        if(titles[i].textContent===stopName){
+          closeSearch();
+          setTimeout(function(){
+            titles[i].closest('.stop').scrollIntoView({behavior:'smooth',block:'center'});
+            titles[i].closest('.stop').style.transition='background 0.3s';
+            titles[i].closest('.stop').style.background='#FEF0EC';
+            setTimeout(function(){titles[i].closest('.stop').style.background='';},2000);
+          },350);
+          break;
+        }
       }
+      return;
+    }
+    var vaultRow=e.target.closest('.search-result[data-vault]');
+    if(vaultRow){
+      var vName=vaultRow.getAttribute('data-vault');
+      window.location.href='vault.html?q='+encodeURIComponent(vName);
     }
   });
 })();

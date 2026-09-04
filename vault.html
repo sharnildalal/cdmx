@@ -508,6 +508,13 @@
       el.style.transitionDelay = `${(index % 4) * 45}ms`;
       revealObserver.observe(el);
     });
-  </script>
+  
+    // Auto-search from ?q= param (from itinerary search link)
+    var urlQ = new URLSearchParams(window.location.search).get('q');
+    if (urlQ) {
+      search.value = urlQ;
+      applyFilters({ scroll: true });
+    }
+</script>
 </body>
 </html>
