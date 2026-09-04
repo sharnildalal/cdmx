@@ -601,10 +601,15 @@
 </div>
 
 <div class="vault-entry">
-  <a class="vault-link" href="vault.html">
-    CDMX Vault: 41 More Spots
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </a>
+  <div style="display:flex;align-items:center;justify-content:center;gap:10px">
+    <a class="vault-link" href="vault.html" style="flex:none">
+      CDMX Vault: 41 More Spots
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button id="searchFab" aria-label="Search venues" style="flex:none;width:40px;height:40px;border-radius:50%;background:var(--terracotta);color:#fff;border:none;box-shadow:0 3px 10px rgba(191,78,48,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+    </button>
+  </div>
 </div>
 
 <!-- ═══════ BASE ═══════ -->
@@ -612,9 +617,7 @@
   <strong>Home Base:</strong> Airbnb,
   <span class="hood-tag">Roma Norte</span>
 </div>
-<div style="text-align:center;padding:6px 0 2px">
-  <a href="vault.html" style="display:inline-block;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--navy);text-decoration:none;padding:6px 18px;border:1px solid var(--border);border-radius:20px;transition:background 0.15s">🗂 Explore 43 more spots</a>
-</div>
+
 
 <!-- ═══════ DAY 1 ═══════ -->
 <section class="day-section" id="day-1">
@@ -1342,9 +1345,9 @@
 
 <!-- Search FAB + Overlay -->
 <style>
-.search-fab{position:fixed;bottom:24px;right:24px;width:52px;height:52px;border-radius:50%;background:var(--terracotta);color:#fff;border:none;box-shadow:0 4px 16px rgba(0,0,0,0.2);cursor:pointer;z-index:1000;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s}
-.search-fab:hover{transform:scale(1.08);box-shadow:0 6px 20px rgba(0,0,0,0.25)}
-.search-fab svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round}
+
+
+
 .search-overlay{position:fixed;inset:0;background:rgba(26,26,26,0.7);z-index:1001;opacity:0;pointer-events:none;transition:opacity 0.25s}
 .search-overlay.open{opacity:1;pointer-events:auto}
 .search-panel{position:fixed;bottom:0;left:0;right:0;min-height:40vh;max-height:75vh;background:#fff;border-radius:20px 20px 0 0;z-index:1002;transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;box-shadow:0 -8px 32px rgba(0,0,0,0.15)}
@@ -1373,9 +1376,7 @@
 .vault-cta:hover{background:var(--bg-warm)}
 </style>
 
-<button class="search-fab" id="searchFab" aria-label="Search venues">
-  <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-</button>
+
 <div class="search-overlay" id="searchOverlay"></div>
 <div class="search-panel" id="searchPanel">
   <div class="search-header">
@@ -1404,13 +1405,13 @@
   function openSearch(){
     panel.classList.add('open');
     overlay.classList.add('open');
-    fab.style.display='none';
+    
     input.focus();
   }
   function closeSearch(){
     panel.classList.remove('open');
     overlay.classList.remove('open');
-    fab.style.display='flex';
+    
     input.value='';
     results.innerHTML='<div class="search-hint">Search across the itinerary and <strong>43 vault spots</strong></div>';
   }
