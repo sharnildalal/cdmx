@@ -601,15 +601,10 @@
 </div>
 
 <div class="vault-entry">
-  <div style="display:flex;align-items:center;justify-content:center;gap:10px">
-    <a class="vault-link" href="vault.html" style="flex:none">
-      CDMX Vault: 41 More Spots
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-    <button id="searchFab" aria-label="Search venues" style="flex:none;width:40px;height:40px;border-radius:50%;background:var(--terracotta);color:#fff;border:none;box-shadow:0 3px 10px rgba(191,78,48,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center">
-      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-    </button>
-  </div>
+  <a class="vault-link" href="vault.html">
+    CDMX Vault: 41 More Spots
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
 </div>
 
 <!-- ═══════ BASE ═══════ -->
@@ -1345,6 +1340,9 @@
 
 <!-- Search FAB + Overlay -->
 <style>
+.search-fab{position:fixed;bottom:24px;right:24px;width:52px;height:52px;border-radius:50%;background:var(--terracotta);color:#fff;border:none;box-shadow:0 4px 16px rgba(0,0,0,0.2);cursor:pointer;z-index:1000;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s}
+.search-fab:hover{transform:scale(1.08);box-shadow:0 6px 20px rgba(0,0,0,0.25)}
+.search-fab svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round}
 
 
 
@@ -1377,6 +1375,10 @@
 </style>
 
 
+
+<button class="search-fab" id="searchFab2" aria-label="Search venues">
+  <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+</button>
 <div class="search-overlay" id="searchOverlay"></div>
 <div class="search-panel" id="searchPanel">
   <div class="search-header">
@@ -1395,7 +1397,7 @@
 (function(){
   var itin=[{n:'Los Parados',d:'Day 1 (Fri Sep 4)'},{n:'Viernes Espectacular - Lucha Libre CMLL',d:'Day 1 (Fri Sep 4)'},{n:'Licorería Limantour',d:'Day 1 (Fri Sep 4)'},{n:'Café de Nadie',d:'Day 1 (Fri Sep 4)'},{n:'Panadería Rosetta',d:'Day 2 (Sat Sep 5)'},{n:'Xochimilco Boat Tour',d:'Day 2 (Sat Sep 5)'},{n:'Supra Roma',d:'Day 2 (Sat Sep 5)'},{n:'Expendio de Maíz',d:'Day 2 (Sat Sep 5)'},{n:'Handshake Speakeasy',d:'Day 2 (Sat Sep 5)'},{n:'Hanky Panky',d:'Day 2 (Sat Sep 5)'},{n:'Patrick Miller',d:'Day 2 (Sat Sep 5)'},{n:'Rooftop Brunch - Condesa',d:'Day 3 (Sun Sep 6)'},{n:'Cityzen Rooftop - Sofitel',d:'Day 3 (Sun Sep 6)'},{n:'Bar Mauro',d:'Day 3 (Sun Sep 6)'},{n:'Moliere 48 Cigar Bar',d:'Day 3 (Sun Sep 6)'},{n:'Parole Polanco',d:'Day 3 (Sun Sep 6)'},{n:'Centro Histórico Walk',d:'Day 4 (Mon Sep 7)'},{n:'Museo Nacional de Antropología',d:'Day 4 (Mon Sep 7)'},{n:'Viko Vegan Taco',d:'Day 4 (Mon Sep 7)'},{n:'Pujol',d:'Day 4 (Mon Sep 7)'},{n:'Casa Franca',d:'Day 4 (Mon Sep 7)'}];
   var vault=[{n:'Handshake Speakeasy',c:'Cocktails',h:'Juárez / Zona Rosa'},{n:'Hanky Panky',c:'Cocktails',h:'Juárez'},{n:'Licorería Limantour',c:'Cocktails',h:'Roma Norte'},{n:'Tlecān',c:'Cocktails',h:'Roma Norte'},{n:'Café de Nadie',c:'Cocktails',h:'Roma Norte'},{n:'Bar Mauro',c:'Cocktails',h:'Roma Norte'},{n:'Form + Matter (FO+MA)',c:'Cocktails',h:'Roma Norte'},{n:'La Clandestina',c:'Cocktails',h:'Condesa edge'},{n:'Bijou Drinkery Room',c:'Cocktails',h:'Hipódromo / Condesa'},{n:'Pinche Bar',c:'Cocktails',h:'Anáhuac I Sección'},{n:'Casa Franca',c:'Cocktails',h:'Roma Norte'},{n:'Cityzen Rooftop Bar',c:'Rooftops',h:'Reforma / Cuauhtémoc'},{n:'Supra Roma',c:'Rooftops',h:'Roma Norte'},{n:'Palmares Azotea',c:'Rooftops',h:'Roma Norte'},{n:'Toledo Rooftop',c:'Rooftops',h:'Juárez / Roma edge'},{n:'Balmori Roofbar',c:'Rooftops',h:'Roma Norte'},{n:'SkyBar Condesa',c:'Rooftops',h:'Condesa'},{n:'Condesa DF Rooftop',c:'Rooftops',h:'Condesa'},{n:'Ling Ling by Hakkasan',c:'Rooftops',h:'Reforma'},{n:'El Mayor',c:'Rooftops',h:'Centro Histórico'},{n:'Terraza Catedral',c:'Rooftops',h:'Centro Histórico'},{n:'Pujol',c:'Dining',h:'Polanco'},{n:'Expendio de Maíz Sin Nombre',c:'Dining',h:'Roma Norte'},{n:'Quintonil',c:'Dining',h:'Polanco'},{n:'Contramar',c:'Dining',h:'Roma Norte'},{n:'Masala y Maíz',c:'Dining',h:'Juárez'},{n:'Los Loosers',c:'Dining',h:'Roma Norte'},{n:'Azul Histórico',c:'Dining',h:'Centro Histórico'},{n:'Los Parados',c:'Tacos',h:'Roma Sur'},{n:'El Vilsito',c:'Tacos',h:'Narvarte Oriente'},{n:'Los Callejeros',c:'Tacos',h:'Centro Histórico'},{n:'Taquería El Califa',c:'Tacos',h:'Juárez / Reforma'},{n:'Por Siempre Vegana Taquería',c:'Tacos',h:'Roma Sur / Roma Norte'},{n:'Gracias Madre Taquería Vegana',c:'Tacos',h:'Roma Norte'},{n:'Taco Santo Vegano',c:'Tacos',h:'Roma Norte'},{n:'Viko Vegan Taco',c:'Tacos',h:'Juárez'},{n:'Vege Taco',c:'Tacos',h:'Coyoacán'},{n:'Patrick Miller',c:'Dancing',h:'Roma Norte'},{n:'Parole Polanco',c:'Dancing',h:'Polanco'},{n:'LooLoo Studio',c:'Dancing',h:'Juárez / Zona Rosa'},{n:'Antro Juan',c:'Dancing',h:'Roma Norte'},{n:'Panadería Rosetta',c:'Cafes',h:'Roma Norte'},{n:'Vegamo',c:'Cafes',h:'Centro / Roma edge'}];
-  var fab=document.getElementById('searchFab');
+  var fab=document.getElementById('searchFab2');
   var overlay=document.getElementById('searchOverlay');
   var panel=document.getElementById('searchPanel');
   var input=document.getElementById('searchInput');
@@ -1404,12 +1406,14 @@
 
   function openSearch(){
     panel.classList.add('open');
+    fab.style.display='none';
     overlay.classList.add('open');
     
     input.focus();
   }
   function closeSearch(){
     panel.classList.remove('open');
+    fab.style.display='flex';
     overlay.classList.remove('open');
     
     input.value='';
