@@ -407,15 +407,7 @@
     const vault = document.getElementById('vault');
     vault.innerHTML = categories.map(cat => {
       const items = venues.filter(v => v.c === cat.id);
-      const extras = cat.id === 'tacos' ? `<div class="saved-notes reveal">
-        <h3>Saved food notes</h3>
-        <p>Original comparison tables kept here for quick reference. One Centro lead remains unidentified, so it is not listed as a venue.</p>
-        <div class="note-images">
-          <figure><img src="img/v-img02.jpg" alt="Saved table comparing El Vilsito, Los Callejeros, Taquería El Califa, and an unidentified Centro taco lead" loading="lazy"><figcaption>Classic and Centro taco shortlist</figcaption></figure>
-          <figure><img src="img/v-img03.jpg" alt="Saved table comparing five vegan taco shops by style, specialty, tortilla, and price" loading="lazy"><figcaption>Vegan taco shortlist</figcaption></figure>
-        </div>
-        <div class="lead-note"><strong>Open lead:</strong> A fresh-tortilla taco spot in Centro, under MXN 100 and good for a quick daytime bite. The screenshot did not identify the venue, so the Vault does not guess.</div>
-      </div>` : '';
+      const extras = '';
       return `<section class="category" id="${cat.id}" data-category-section="${cat.id}">
         <div class="section-head">
           <div class="section-emoji" aria-hidden="true">${cat.emoji}</div>
